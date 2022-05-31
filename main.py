@@ -50,11 +50,6 @@ def fio_register(message):
 #     global ipp
 #     ipp = message.text
 #     bot.register_next_step_handler(message.chat.id, amount)
-#     temp for debugging
-#     user_name = message.from_user.username
-#     chat_id = '-680473958'
-#     bot.send_message(chat_id, f'@{user_name} произвел оплату.' f'\nФИО: {fio} \nIP: {ipp}', parse_mode = 'html')
-#     temp for debugging (end)
 #     msg = bot.send_message(message.chat.id, 'Введите IP')
 #     if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", message.text):
 #         msg = bot.send_message(message.chat.id, 'Введите IP')
