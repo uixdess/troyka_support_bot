@@ -45,16 +45,21 @@ def fio_register(message):
     bot.register_next_step_handler(msg, amount_enter)
 
 
-# починить проверку
-# def validate_ip(message):
-#     global ipp
-#     ipp = message.text
-#     bot.register_next_step_handler(message.chat.id, amount)
-#     msg = bot.send_message(message.chat.id, 'Введите IP')
-#     if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", message.text):
-#         msg = bot.send_message(message.chat.id, 'Введите IP')
-#     else:
-#         msg = bot.reply_to(message, 'IP адрес должен содержать только цифры. Введите снова IP адрес')
+def again(message):
+    msg = bot.send_message(message.chat.id, 'Введите IP снова')
+    bot.register_next_step_handler(msg, validate_ip)
+
+
+def validate_ip(message):
+    global ipp
+    ipp = message.text
+
+    if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", message.text):
+        amount_enter(message)
+    else:
+        msg = bot.reply_to(message, 'IP адрес должен содержать только цифры. Введите снова IP адрес')
+        again(message)
+
 
 def amount_enter(message):
     global ipp
