@@ -42,7 +42,7 @@ def fio_register(message):
     fio = message.text
 
     msg = bot.send_message(message.chat.id, 'Введите IP')
-    bot.register_next_step_handler(msg, amount_enter)
+    bot.register_next_step_handler(msg, validate_ip)
 
 
 def again(message):
