@@ -102,14 +102,15 @@ def payment_check(call):
 
 
 def payment_methods(message):
+    remove = types.ReplyKeyboardRemove()
     if message.text == 'Ссылка на чек':
-        msg = bot.send_message(message.chat.id, 'Введите ссылку на чек')
+        msg = bot.send_message(message.chat.id, 'Введите ссылку на чек', reply_markup=remove)
         bot.register_next_step_handler(msg, text_payment)
     elif message.text == 'Скриншот оплаты':
-        msg = bot.send_message(message.chat.id, 'Пришлите фото оплаты')
+        msg = bot.send_message(message.chat.id, 'Пришлите фото оплаты', reply_markup=remove)
         bot.register_next_step_handler(msg, photo_payment)
     elif message.text == 'Чек в формате pdf':
-        msg = bot.send_message(message.chat.id, 'Отправьте чек в формате pdf')
+        msg = bot.send_message(message.chat.id, 'Отправьте чек в формате pdf', reply_markup=remove)
         bot.register_next_step_handler(msg, document_payment)
     else:
         bot.send_message(message.chat.id, 'Надо выбрать один из вариантов. Попробуй еще раз.')
