@@ -62,8 +62,6 @@ def validate_ip(message):
 
 
 def amount_enter(message):
-    global ipp
-    ipp = message.text
 
     msg = bot.send_message(message.chat.id, 'Введите сумму')
     bot.register_next_step_handler(msg, final)
