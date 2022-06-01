@@ -9,6 +9,7 @@ bot = telebot.TeleBot(token)
 
 chat_id = '-680473958'
 
+
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
@@ -62,7 +63,6 @@ def validate_ip(message):
 
 
 def amount_enter(message):
-
     msg = bot.send_message(message.chat.id, 'Введите сумму')
     bot.register_next_step_handler(msg, final)
 
@@ -122,7 +122,9 @@ def text_payment(message):
     link = message.text
     msg = bot.reply_to(message, 'Оплата принята. В течении 24 часов Ваш баланс будет пополнен')
     user_name = message.from_user.username
-    bot.send_message(chat_id, f'@{user_name} произвел оплату.' f'\nФИО: {fio} \nIP: {ipp} \nСумма: {amount} \nСсылка: {link}', parse_mode='html')
+    bot.send_message(chat_id,
+                     f'@{user_name} произвел оплату.' f'\nФИО: {fio} \nIP: {ipp} \nСумма: {amount} \nСсылка: {link}',
+                     parse_mode='html')
 
 
 @bot.message_handler(content_types=['photo'])
