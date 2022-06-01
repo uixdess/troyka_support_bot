@@ -54,10 +54,10 @@ def validate_ip(message):
     global ipp
     ipp = message.text
 
-    if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", message.text):
+    if re.match(r"10.24.\d{1,3}\.\d{1,3}$", ipp):
         amount_enter(message)
     else:
-        msg = bot.reply_to(message, 'IP адрес должен содержать только цифры. Введите снова IP адрес')
+        msg = bot.reply_to(message, 'Введен неверный IP адрес. IP адрес должен начинаться с 10.24.xxx.xxx')
         again(message)
 
 
