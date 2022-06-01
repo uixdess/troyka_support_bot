@@ -28,7 +28,7 @@ def wip(message):
 
 @bot.message_handler(content_types=['text'])
 def pay(message):
-    if message.text == 'Оплатить за интернет':
+    if message.text == 'Оплатить за интернет' or message.text == '/pay':
         msg = bot.send_message(message.chat.id, 'Введите ФИО')
         bot.register_next_step_handler(msg, fio_register)
     elif message.text == 'Проверить статус заявки' or message.text == 'Сообщить о проблеме' or message.text == 'Оставить заявку на добавление/изменение MAC адреса':
