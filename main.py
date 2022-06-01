@@ -70,13 +70,23 @@ def amount_enter(message):
 def final(message):
     global amount
     amount = message.text
-
-    markup_pay = types.InlineKeyboardMarkup()
-    button_1 = types.InlineKeyboardButton("Оплатить", url="https://www.tinkoff.ru/cf/50CxiWeHAiD", callback_data='pay')
-    button_2 = types.InlineKeyboardButton("Готово", callback_data='done')
-    markup_pay.add(button_1, button_2)
-    bot.send_message(message.chat.id, 'Выберите способ оплаты.\nПосле оплаты нажмите <b>готово</b>', parse_mode='html',
-                     reply_markup=markup_pay)
+    if amount.isdigit():
+        amount = int(amount)
+        if amount % 10 == 0:
+            markup_pay = types.InlineKeyboardMarkup()
+            button_1 = types.InlineKeyboardButton("Оплатить", url="https://www.tinkoff.ru/cf/50CxiWeHAiD",
+                                                  callback_data='pay')
+            button_2 = types.InlineKeyboardButton("Готово", callback_data='done')
+            markup_pay.add(button_1, button_2)
+            bot.send_message(message.chat.id, 'Выберите способ оплаты.\nПосле оплаты нажмите <b>готово</b>',
+                             parse_mode='html',
+                             reply_markup=markup_pay)
+        else:
+            msg = bot.reply_to(message, 'Сумма должна быть кратна 10 рублям')
+            amount_enter(message)
+    else:
+        msg = bot.reply_to(message, 'Вводите только цифры')
+        amount_enter(message)
 
 
 @bot.callback_query_handler(func=lambda call: True)
